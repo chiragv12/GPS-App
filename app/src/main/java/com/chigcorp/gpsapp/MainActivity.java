@@ -3,20 +3,32 @@ package com.chigcorp.gpsapp;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ToolbarWidgetWrapper;
+import android.util.Log;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements LocationListener{
+    List<Address> list;
+    Geocoder geocoder;
     TextView longitude;
     TextView latitude;
+    TextView address;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -29,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         setContentView(R.layout.activity_main);
         longitude = (TextView)findViewById(R.id.textView_long);
         latitude = (TextView)findViewById(R.id.textView_lat);
+        address = (TextView)findViewById(R.id.textView_address);
+        geocoder = new Geocoder(this, Locale.US);
 
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
@@ -61,6 +75,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     public void onLocationChanged(Location location) {
         longitude.setText(Double.toString(location.getLongitude()));
         latitude.setText(Double.toString(location.getLatitude()));
+        try {
+            list = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            address.setText(list.get(0).getAddressLine(0));
+
+        }catch (IOException e){
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
