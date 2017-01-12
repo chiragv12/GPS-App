@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     Location previousLocation;
     TextView dist;
     TextView time;
+    TextView favLoc;
+    ArrayList<FavLocation> locList;
     float distSum;
     long initialTime;
-    long elapsedTime;
     long currentTime;
 
     @Override
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         address = (TextView)findViewById(R.id.textView_address);
         dist = (TextView)findViewById(R.id.textView_dist);
         time = (TextView)findViewById(R.id.textView_time);
+        favLoc = (TextView)findViewById(R.id.textView_favloc);
         geocoder = new Geocoder(this, Locale.US);
 
         initialTime = System.currentTimeMillis();
@@ -106,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         previousLocation = location;
         currentTime = System.currentTimeMillis();
         time.setText("Time: " + ((currentTime - initialTime)/1000));
+
+
 
     }
 

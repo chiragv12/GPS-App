@@ -62,4 +62,15 @@
         android:layout_alignRight="@+id/textView_address"
         android:layout_alignEnd="@+id/textView_address"
         android:layout_marginBottom="94dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Favorite Location"
+        android:id="@+id/textView_favloc"
+        android:layout_alignTop="@+id/textView_time"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
