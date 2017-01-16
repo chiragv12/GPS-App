@@ -21,4 +21,8 @@ public class FavLocation {
     public Address getLocation(){
         return location;
     }
+
+    public void setElapsedTime(long time){
+        elapsedTime = time;
+    }
 }
