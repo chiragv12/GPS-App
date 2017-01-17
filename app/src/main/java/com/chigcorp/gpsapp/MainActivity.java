@@ -109,6 +109,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         currentTime = System.currentTimeMillis();
         time.setText("Time: " + ((currentTime - initialTime)/1000));
 
+        Boolean repeat = false;
+        for(int i = 0; i < locList.size(); i++){
+            if(list.get(0) == locList.get(i).getLocation()){
+                repeat = false;
+            }
+
+            if(!repeat){
+
+            }
+        }
+
 
 
     }

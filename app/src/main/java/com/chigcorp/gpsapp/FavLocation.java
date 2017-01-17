@@ -1,6 +1,7 @@
 package com.chigcorp.gpsapp;
 
 import android.location.Address;
+import android.location.Location;
 
 /**
  * Created by Chirag on 1/12/17.
