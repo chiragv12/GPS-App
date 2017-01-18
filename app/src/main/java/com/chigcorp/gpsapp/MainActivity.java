@@ -109,13 +109,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         currentTime = System.currentTimeMillis();
         time.setText("Time: " + ((currentTime - initialTime)/1000));
 
-        Boolean repeat = false;
+        boolean repeat = false;
         for(int i = 0; i < locList.size(); i++){
             if(list.get(0) == locList.get(i).getLocation()){
-                repeat = false;
+                repeat = true;
             }
 
             if(!repeat){
+                locList.add(new FavLocation(list.get(0), (currentTime - initialTime)/1000));
+            }
+        }
+
+        FavLocation fav = new FavLocation();
+        for(int i = 0; i < locList.size(); i++){
+            if(i == 0){
 
             }
         }

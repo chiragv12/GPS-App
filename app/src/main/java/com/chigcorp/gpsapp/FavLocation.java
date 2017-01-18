@@ -10,6 +10,10 @@ public class FavLocation {
     Address location;
     long elapsedTime;
 
+    public FavLocation(){
+
+    }
+
     public FavLocation(Address loc, long time){
         location = loc;
         elapsedTime = time;
@@ -21,6 +25,10 @@ public class FavLocation {
 
     public Address getLocation(){
         return location;
+    }
+
+    public void setLocation(Address loc){
+        location = loc;
     }
 
     public void setElapsedTime(long time){
