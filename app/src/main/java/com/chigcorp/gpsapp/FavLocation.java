@@ -7,14 +7,14 @@ import android.location.Location;
  * Created by Chirag on 1/12/17.
  */
 public class FavLocation {
-    Address location;
+    Location location;
     long elapsedTime;
 
     public FavLocation(){
 
     }
 
-    public FavLocation(Address loc, long time){
+    public FavLocation(Location loc, long time){
         location = loc;
         elapsedTime = time;
     }
@@ -23,11 +23,11 @@ public class FavLocation {
         return elapsedTime;
     }
 
-    public Address getLocation(){
+    public Location getLocation(){
         return location;
     }
 
-    public void setLocation(Address loc){
+    public void setLocation(Location loc){
         location = loc;
     }
 

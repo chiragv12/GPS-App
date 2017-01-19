@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     Location previousLocation;
     TextView dist;
     TextView time;
-    TextView favLoc;
-    ArrayList<FavLocation> locList;
     float distSum;
     long initialTime;
     long currentTime;
@@ -53,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         address = (TextView)findViewById(R.id.textView_address);
         dist = (TextView)findViewById(R.id.textView_dist);
         time = (TextView)findViewById(R.id.textView_time);
-        favLoc = (TextView)findViewById(R.id.textView_favloc);
         geocoder = new Geocoder(this, Locale.US);
 
         initialTime = System.currentTimeMillis();
@@ -89,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        if(previousLocation != null && (SystemClock.elapsedRealtime() >= initialTime + 10000)) {
+
+        if(previousLocation != null /*&& (SystemClock.elapsedRealtime() >= initialTime + 10000)*/) {
             float distance = location.distanceTo(previousLocation);
             distSum += distance;
             dist.setText("Distance: "+(int)(distSum));
@@ -105,29 +103,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             e.printStackTrace();
         }
 
+
         previousLocation = location;
         currentTime = System.currentTimeMillis();
         time.setText("Time: " + ((currentTime - initialTime)/1000));
-
-        boolean repeat = false;
-        for(int i = 0; i < locList.size(); i++){
-            if(list.get(0) == locList.get(i).getLocation()){
-                repeat = true;
-            }
-
-            if(!repeat){
-                locList.add(new FavLocation(list.get(0), (currentTime - initialTime)/1000));
-            }
-        }
-
-        FavLocation fav = new FavLocation();
-        for(int i = 0; i < locList.size(); i++){
-            if(i == 0){
-
-            }
-        }
-
-
 
     }
 
